@@ -68,9 +68,6 @@ public class Parser
 		
 	}
 	
-	
-	
-
 	private void statementList()
 	{
 		while(currentIndex < size-1)
@@ -90,10 +87,28 @@ public class Parser
 			case READ:
 				nextToken();
 				ioList();
+				if(current == Token.SEMI)
+				{
+					nextToken();
+				}
+				else
+				{
+					error("statement read: expected ';'");
+					nextToken();
+				}
 				break;
 			case WRITE:
 				nextToken();
 				ioList();
+				if(current == Token.SEMI)
+				{
+					nextToken();
+				}
+				else
+				{
+					error("statement write: expected ';'");
+					nextToken();
+				}
 				break;
 			case IF:
 				nextToken();
